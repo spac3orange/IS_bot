@@ -1,0 +1,8 @@
+#ignore env
+.env
+
+#ignore venv
+.venv/
+
+#ignore google sheet key
+core/eco-item-search-1fe29998ddf9.json
