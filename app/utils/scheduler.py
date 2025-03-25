@@ -12,9 +12,11 @@ import os
 CACHE_FILE = "cache.json"
 async def update_cache():
     gsheets_client = GoogleSheetsClient(credentials_json='app/core/eco-item-search-1fe29998ddf9.json', sheet_name='База')
+    gsheets_client2 = GoogleSheetsClient(credentials_json='app/core/eco-item-search-1fe29998ddf9.json', sheet_name='Категория А 36')
     data = await gsheets_client.get_all_records_from_all_sheets()
+    data2 = await gsheets_client2.get_all_records_from_all_sheets()
     timestamp = time.time()
-
+    data = data + data2
     # Сохраняем данные в файл
     with open(CACHE_FILE, 'w', encoding='utf-8') as f:
         json.dump({"data": data, "timestamp": timestamp}, f, ensure_ascii=False, indent=4)
