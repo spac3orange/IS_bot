@@ -109,10 +109,11 @@ async def search_bycode(message: Message, state: FSMContext):
                                         price_list.append(int(rrc))
                                     code = i.get("Штрих-код производителя") or i.get("Штрихкод производителя") or "Нет"
                                     link = f'<a href="{i.get("Ссылка", "Нет")}">открыть в браузере</a>'
+                                    price = i.get("РРЦ") or i.get("Цена") or "Нет"
                                     await message.answer('<b>Найдено совпадение</b>'
                                                          f'\n<b>Вкладка:</b> {k}'
                                                          f'\n\n<b>Наименование:</b> <code>{i.get('Наименование', 'Нет')}</code>'
-                                                         f'\n<b>РРЦ:</b> <code>{i.get("РРЦ", "Нет")}</code>'
+                                                         f'\n<b>РРЦ:</b> <code>{price}</code>'
                                                          f'\n<b>Ссылка:</b> <b>{link}</b>'
                                                          f'\n<b>Штрих-код производителя:</b> <code>{code}</code>',
                                                          disable_web_page_preview=True, parse_mode='HTML')
@@ -204,12 +205,13 @@ async def search_bymodel(message: Message, state: FSMContext):
                                         pass
                                     else:
                                         price_list.append(int(rrc))
-                                    code = i.get("Штрих-код производителя", "Нет") or i.get("Штрихкод производителя", "Нет")
+                                    code = i.get("Штрих-код производителя") or i.get("Штрихкод производителя") or "Нет"
                                     link = f'<a href="{i.get("Ссылка", "Нет")}">открыть в браузере</a>'
+                                    price = i.get("РРЦ") or i.get("Цена") or "Нет"
                                     await message.answer('<b>Найдено совпадение</b>'
                                                          f'\n<b>Вкладка:</b> {k}'
                                                          f'\n\n<b>Наименование:</b> <code>{i.get('Наименование', 'Нет')}</code>'
-                                                         f'\n<b>РРЦ:</b> <code>{i.get("РРЦ", "Нет")}</code>'
+                                                         f'\n<b>РРЦ:</b> <code>{price}</code>'
                                                          f'\n<b>Ссылка:</b> <b>{link}</b>'
                                                          f'\n<b>Штрих-код производителя:</b> <code>{code}</code>',
                                                          disable_web_page_preview=True, parse_mode='HTML')

@@ -1,3 +1,5 @@
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from app.core import logger
@@ -14,6 +16,7 @@ async def update_cache():
     gsheets_client = GoogleSheetsClient(credentials_json='app/core/eco-item-search-1fe29998ddf9.json', sheet_name='База')
     gsheets_client2 = GoogleSheetsClient(credentials_json='app/core/eco-item-search-1fe29998ddf9.json', sheet_name='Категория А 36')
     data = await gsheets_client.get_all_records_from_all_sheets()
+    await asyncio.sleep(60)
     data2 = await gsheets_client2.get_all_records_from_all_sheets()
     timestamp = time.time()
     data = data + data2
