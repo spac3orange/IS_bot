@@ -207,11 +207,7 @@ async def search_bymodel(message: Message, state: FSMContext):
                                         price_list.append(int(rrc))
                                     code = i.get("Штрих-код производителя") or i.get("Штрихкод производителя") or "Нет"
                                     link = f'<a href="{i.get("Ссылка", "Нет")}">открыть в браузере</a>'
-                                    price = i.get("РРЦ")
-                                    if not price:  # Если None, "", 0
-                                        price = i.get("Цена")
-                                    if not price:
-                                        price = "Нет"
+                                    price = i.get("РРЦ") or i.get("Цена") or "Нет"
                                     await message.answer('<b>Найдено совпадение</b>'
                                                          f'\n<b>Вкладка:</b> {k}'
                                                          f'\n\n<b>Наименование:</b> <code>{i.get('Наименование', 'Нет')}</code>'
