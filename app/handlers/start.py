@@ -102,7 +102,7 @@ async def search_bycode(message: Message, state: FSMContext):
                             if key == 'Штрих-код производителя' or key == 'Штрихкод производителя':
                                 if item_name == value:
                                     match_found = True
-                                    rrc = i.get("РРЦ", "Нет")
+                                    rrc = i.get("РРЦ") or i.get('Цена') or 'Нет'
                                     if rrc == 'Нет':
                                         pass
                                     else:
@@ -200,7 +200,7 @@ async def search_bymodel(message: Message, state: FSMContext):
                                     # пропуск итерации если значение состоит только из цифр
                                 elif item_name.lower() in value.lower():
                                     match_found = True
-                                    rrc = i.get("РРЦ", "Нет")
+                                    rrc = i.get("РРЦ") or i.get("Цена") or 'Нет'
                                     if rrc == 'Нет':
                                         pass
                                     else:
