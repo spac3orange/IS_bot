@@ -13,6 +13,7 @@ import json
 import os
 from app.keyboards import main_kb
 from typing import List
+import asyncio
 
 router = Router()
 
@@ -110,6 +111,7 @@ async def search_bycode(message: Message, state: FSMContext):
                                     code = i.get("Штрих-код производителя") or i.get("Штрихкод производителя") or "Нет"
                                     link = f'<a href="{i.get("Ссылка", "Нет")}">открыть в браузере</a>'
                                     price = i.get("РРЦ") or i.get("Цена") or "Нет"
+                                    await asyncio.sleep(1)
                                     await message.answer('<b>Найдено совпадение</b>'
                                                          f'\n<b>Вкладка:</b> {k}'
                                                          f'\n\n<b>Наименование:</b> <code>{i.get('Наименование', 'Нет')}</code>'
@@ -208,6 +210,7 @@ async def search_bymodel(message: Message, state: FSMContext):
                                     code = i.get("Штрих-код производителя") or i.get("Штрихкод производителя") or "Нет"
                                     link = f'<a href="{i.get("Ссылка", "Нет")}">открыть в браузере</a>'
                                     price = i.get("РРЦ") or i.get("Цена") or "Нет"
+                                    await asyncio.sleep(0.5)
                                     await message.answer('<b>Найдено совпадение</b>'
                                                          f'\n<b>Вкладка:</b> {k}'
                                                          f'\n\n<b>Наименование:</b> <code>{i.get('Наименование', 'Нет')}</code>'
